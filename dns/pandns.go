@@ -29,7 +29,13 @@ type panAnalyticRecord struct {
 
 func SetAuthoritativeDNSServers() error {
 	if analyzeAuthoritativeDNSServersLimit == 0 {
-		return errors.New(fmt.Sprintf("%s: NO NS Record", rootDomain))
+		authoritativeDNSServers = append(authoritativeDNSServers, "8.8.8.8:53")
+		authoritativeDNSServers = append(authoritativeDNSServers, "119.29.29.29:53")
+		authoritativeDNSServers = append(authoritativeDNSServers, "223.5.5.5:53")
+		authoritativeDNSServers = append(authoritativeDNSServers, "223.6.6.6:53")
+		authoritativeDNSServers = append(authoritativeDNSServers, "114.114.114.114:53")
+		fmt.Sprintf("%s: NO NS Record", rootDomain)
+		return nil
 	}
 
 	nsServers, err := net.LookupNS(rootDomain)
